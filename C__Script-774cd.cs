@@ -83,9 +83,9 @@ namespace ns774cd
 
             for (int i = 0; i < meshInput.Vertices.Count; i++)
             {
-                floatVertexArray[i * 3 + 0] = (float)meshInput.Vertices[i].X;
-                floatVertexArray[i * 3 + 1] = (float)meshInput.Vertices[i].Y;
-                floatVertexArray[i * 3 + 2] = (float)meshInput.Vertices[i].Z;
+                floatVertexArray[i * 3 + 0] = (float) meshInput.Vertices[i].X;
+                floatVertexArray[i * 3 + 1] = (float) meshInput.Vertices[i].Y;
+                floatVertexArray[i * 3 + 2] = (float) meshInput.Vertices[i].Z;
             }
 
             // Debug Print
@@ -96,9 +96,9 @@ namespace ns774cd
             */
             for (int i = 0; i < meshInput.Faces.Count; i++)
             {
-                intFaceArray[i * 3 + 0] = (int)meshInput.Faces[i][0];
-                intFaceArray[i * 3 + 1] = (int)meshInput.Faces[i][1];
-                intFaceArray[i * 3 + 2] = (int)meshInput.Faces[i][2];
+                intFaceArray[i * 3 + 0] = (int) meshInput.Faces[i][0];
+                intFaceArray[i * 3 + 1] = (int) meshInput.Faces[i][1];
+                intFaceArray[i * 3 + 2] = (int) meshInput.Faces[i][2];
             }
             //Debug Print
             /*
@@ -114,13 +114,13 @@ namespace ns774cd
 
   public void WriteFloatArraytoBin(float[] floatArray, string binPath)
   {
-            using(System.IO.FileStream floatArrayFile = System.IO.File.Create(binPath, 0))
+            using(System.IO.FileStream floatArrayFile = System.IO.File.Create(binPath,1024))
             {
                 using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(floatArrayFile))
                 {
                     foreach ( float value in floatArray)
                     {
-                        writer.Write((float)value);
+                        writer.Write((float) value);
                     }
                     writer.Close();
                 }
@@ -129,13 +129,13 @@ namespace ns774cd
 
   public void WriteIntArraytoBin(int[] intArray, string binPath)
   {
-            using(System.IO.FileStream intArrayFile = System.IO.File.Create(binPath, Int32))
+            using(System.IO.FileStream intArrayFile = System.IO.File.Create(binPath,1024))
             {
                 using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(intArrayFile))
                 {
                     foreach ( int value in intArray)
                     {
-                        writer.Write((int)value);
+                        writer.Write((int) value);
                     }
                     writer.Close();
                 }
