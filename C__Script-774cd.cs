@@ -72,78 +72,75 @@ namespace ns774cd
         /// they will have a default value.
         /// </summary>
         #region Runscript
-
-        
         private void RunScript(Mesh meshInput, object x, object y, ref object A)
         {
-            
-            string floatVertexArrayPath = "M:/vertexFloat32.bin";
-            string intFaceArrayPath = "M:/vertexInt32.bin";
-            
-            float[] floatVertexArray = new float[meshInput.Vertices.Count*3];
-            int[] intFaceArray = new int[meshInput.Faces.Count*3];
 
-            for (int i=0; i < meshInput.Vertices.Count; i++)
+            string floatVertexArrayPath = "M:/vertexFloat.bin";
+            string intFaceArrayPath = "M:/vertexInt.bin";
+
+            float[] floatVertexArray = new float[meshInput.Vertices.Count * 3];
+            int[] intFaceArray = new int[meshInput.Faces.Count * 3];
+
+            for (int i = 0; i < meshInput.Vertices.Count; i++)
             {
-                floatVertexArray[i*3+0] = meshInput.Vertices[i].X;
-                floatVertexArray[i*3+1] = meshInput.Vertices[i].Y;
-                floatVertexArray[i*3+2] = meshInput.Vertices[i].Z;
+                floatVertexArray[i * 3 + 0] = (float)meshInput.Vertices[i].X;
+                floatVertexArray[i * 3 + 1] = (float)meshInput.Vertices[i].Y;
+                floatVertexArray[i * 3 + 2] = (float)meshInput.Vertices[i].Z;
             }
 
             // Debug Print
             /*
             for(int i=0; i < floatVertexArray.Length; i++){
-                Print(floatVertexArray[i].ToString());
+            Print(floatVertexArray[i].ToString());
             }
             */
-            for (int i=0; i < meshInput.Faces.Count; i++)
+            for (int i = 0; i < meshInput.Faces.Count; i++)
             {
-                intFaceArray[i*3+0] = meshInput.Faces[i][0];
-                intFaceArray[i*3+1] = meshInput.Faces[i][1];
-                intFaceArray[i*3+2] = meshInput.Faces[i][2];
+                intFaceArray[i * 3 + 0] = (int)meshInput.Faces[i][0];
+                intFaceArray[i * 3 + 1] = (int)meshInput.Faces[i][1];
+                intFaceArray[i * 3 + 2] = (int)meshInput.Faces[i][2];
             }
             //Debug Print
             /*
             for(int i=0; i < intFaceArray.Length; i++){
-                Print(intFaceArray[i].ToString());
+            Print(intFaceArray[i].ToString());
             }
-             */
+            */
 
             WriteFloatArraytoBin(floatVertexArray, floatVertexArrayPath);
             WriteIntArraytoBin(intFaceArray, intFaceArrayPath);
 
-        }
+  }
 
-        public void WriteFloatArraytoBin(float[] floatArray, string binPath)
-        {
-            using(System.IO.FileStream floatArrayFile = System.IO.File.Create(binPath))
+  public void WriteFloatArraytoBin(float[] floatArray, string binPath)
+  {
+            using(System.IO.FileStream floatArrayFile = System.IO.File.Create(binPath, 0))
             {
                 using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(floatArrayFile))
                 {
                     foreach ( float value in floatArray)
                     {
-                        writer.Write(value);
+                        writer.Write((float)value);
                     }
                     writer.Close();
                 }
             }
-        }
+  }
 
-        public void WriteIntArraytoBin(int[] intArray, string binPath)
-        {
-            using(System.IO.FileStream floatArrayFile = System.IO.File.Create(binPath))
+  public void WriteIntArraytoBin(int[] intArray, string binPath)
+  {
+            using(System.IO.FileStream intArrayFile = System.IO.File.Create(binPath, Int32))
             {
-                using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(floatArrayFile))
+                using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(intArrayFile))
                 {
-                    foreach ( float value in intArray)
+                    foreach ( int value in intArray)
                     {
-                        writer.Write(value);
+                        writer.Write((int)value);
                     }
                     writer.Close();
                 }
             }
         }
-
         #endregion
 
         #region Additional
